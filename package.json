@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "type": "module",
   "scripts": {
     "build": "npx tsc && npx esbuild --minify index.ts > dist/index.js",
     "test": "jest"
