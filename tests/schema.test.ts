@@ -1,8 +1,21 @@
-import { test } from 'uvu';
-import * as assert from 'uvu/assert';
+import * as path from 'path'
+import * as fs from "fs";
+import {isInputFileValid} from "../lib/schema";
+import * as yaml from 'js-yaml'
 
-test('can validate', () => {
-  assert.is(true, true)
+const readData = (name: string) => {
+  const file = path.resolve(__dirname, 'data', name)
+  return yaml.load(fs.readFileSync(file).toString())
+}
+
+test('validates a good file', () => {
+  const data = readData("links.yml")
+  console.log(data)
+
 })
 
-test.run()
+test('fails to validate a bad file', () => {
+  const data = readData("bad.yml")
+  console.log(data)
+  expect(isInputFileValid(data)).toBe(false)
+})

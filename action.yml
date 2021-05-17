@@ -1,0 +1,13 @@
+name: 'URL status checker'
+description: 'Check if your API routes respond as you expect them to'
+inputs:
+  file:
+    description: 'Your file that defines which links to check'
+    required: true
+    default: 'links.yml'
+outputs:
+  log:
+    description: 'A log of the tests'
+runs:
+  using: 'node12'
+  main: 'dist/index.js'

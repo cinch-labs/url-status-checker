@@ -1,0 +1,4 @@
+links:
+  - url: https://example.com
+    statusCode: 200
+    method: GET

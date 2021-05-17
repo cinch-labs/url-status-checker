@@ -1,4 +1,4 @@
 links:
   - url: https://example.com
-    match: 200
+    statusCode: 200
     method: GET
