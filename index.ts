@@ -3,6 +3,7 @@ import {isInputFileValid, Link, LinksFile} from "./lib/schema";
 import * as core from '@actions/core'
 import * as github from '@actions/github'
 import * as Result from './lib/types'
+import {checkAllLinks} from "./lib/link";
 
 async function run() {
   try {
@@ -29,6 +30,15 @@ async function run() {
 
     const linksData: LinksFile = data as LinksFile
 
+    const results = await checkAllLinks(linksData.links)
+
+    for(const result of results) {
+      if(result.success) {
+        core.info(`PASS - ${result.url}`)
+      } else {
+        core.info(`FAIL - ${result.url}`)
+      }
+    }
 
 
   } catch(e) {
