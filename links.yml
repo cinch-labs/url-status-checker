@@ -2,3 +2,8 @@ links:
   - url: https://example.com
     statusCode: 200
     method: GET
+
+  - url: https://example.com
+    statusCode: 200
+    method: POST
+    body: '{}'
