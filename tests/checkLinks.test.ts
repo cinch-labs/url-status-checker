@@ -1,5 +1,5 @@
-import {Link} from "../lib/schema";
-import {checkAllLinks} from "../lib/link";
+import {Link} from "../src/schema";
+import {checkAllLinks} from "../src/link";
 
 const urls: Link[] = [
   {

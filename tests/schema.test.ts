@@ -1,6 +1,6 @@
 import * as path from 'path'
 import * as fs from "fs";
-import {isInputFileValid} from "../lib/schema";
+import {isInputFileValid} from "../src/schema";
 import * as yaml from 'js-yaml'
 
 const readData = (name: string) => {

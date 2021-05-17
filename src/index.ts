@@ -1,9 +1,9 @@
-import {readFile} from "./lib/file";
-import {isInputFileValid, Link, LinksFile} from "./lib/schema";
+import {readFile} from "./file";
+import {isInputFileValid, LinksFile} from "./schema";
 import * as core from '@actions/core'
 import * as github from '@actions/github'
-import * as Result from './lib/types'
-import {checkAllLinks} from "./lib/link";
+import * as Result from './types'
+import {checkAllLinks} from "./link";
 
 async function run() {
   try {

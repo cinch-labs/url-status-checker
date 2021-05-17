@@ -3,25 +3,27 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
-  "type": "module",
+  "main": "src/index.ts",
   "scripts": {
-    "build": "npx tsc && npx esbuild --minify index.ts > dist/index.js",
+    "build": "npx tsc",
+    "package": "npx ncc build --source-map --minify",
     "test": "jest"
   },
   "devDependencies": {
     "@types/jest": "^26.0.23",
     "@types/node": "^15.0.3",
     "@types/node-fetch": "^2.5.10",
+    "@vercel/ncc": "^0.28.5",
     "esbuild": "^0.11.21",
     "esbuild-jest": "^0.5.0",
     "jest": "^26.6.3",
     "ts-node": "^9.1.1",
-    "typescript": "^4.2.4"
+    "typescript": "^4.2.4",
+    "@types/js-yaml": "^4.0.1"
   },
   "dependencies": {
     "@actions/core": "^1.2.7",
     "@actions/github": "^4.0.0",
-    "@types/js-yaml": "^4.0.1",
     "ajv": "^8.3.0",
     "js-yaml": "^4.1.0",
     "node-fetch": "^2.6.1"
