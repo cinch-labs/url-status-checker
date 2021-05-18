@@ -13,7 +13,7 @@ through each link and checks that they match what you expect
 links_check:
   runs_on: ubuntu-latest
   steps:
-    - uses: @cinch-labs/url-status-checker
+    - uses: @cinch-labs/url-status-checker@v1
       with:
         file: ./links.yml
 ```
