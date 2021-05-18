@@ -4,7 +4,8 @@ Check your API links to see if they bring back the expected status code. You can
 your API down correctly.
 
 This is a github action that works off a config file that you specify in your repository - it runs through each link and
-checks that they match what you expect
+checks that they match what you expect. The path to the file is relative to the base of your repository if you use the
+action as specified below
 
 ## Usage
 
@@ -13,7 +14,7 @@ checks that they match what you expect
 links_check:
   runs_on: ubuntu-latest
   steps:
-    - uses: @cinch-labs/url-status-checker@v1
+    - uses: cinch-labs/url-status-checker@v1.1
       with:
         file: ./links.yml
 ```
