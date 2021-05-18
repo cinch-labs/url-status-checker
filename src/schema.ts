@@ -19,7 +19,7 @@ const schema: JSONSchemaType<LinksFile> = {
   type: "object",
   definitions: {
     baseUrl: {
-      type: "string"
+      type: "string",
     },
     links: {
       type: "array",
