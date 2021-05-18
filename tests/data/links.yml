@@ -1,4 +1,5 @@
+baseUrl: https://example.com
 links:
-  - url: https://example.com
+  - url: /
     statusCode: 200
     method: GET

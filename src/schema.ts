@@ -1,6 +1,6 @@
 import Ajv, {JSONSchemaType} from 'ajv';
 import {HttpMethod} from "./link";
-import * as Http from "http";
+
 const ajv = new Ajv()
 
 export interface Link {
@@ -11,12 +11,16 @@ export interface Link {
 }
 
 export interface LinksFile {
+  baseUrl?: string
   links: Link[]
 }
 
 const schema: JSONSchemaType<LinksFile> = {
   type: "object",
   definitions: {
+    baseUrl: {
+      type: "string"
+    },
     links: {
       type: "array",
       items: {
@@ -41,6 +45,7 @@ const schema: JSONSchemaType<LinksFile> = {
     }
   },
   properties: {
+    baseUrl: {$ref: "#/definitions/baseUrl"},
     links: {$ref: "#/definitions/links"}
   },
   additionalProperties: false,

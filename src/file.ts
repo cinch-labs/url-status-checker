@@ -5,9 +5,9 @@ import * as Result from './types'
 
 export const readFile = (name: string): Result.Type<object> => {
   const file = path.resolve(__dirname, name)
-  const ret =  yaml.load(fs.readFileSync(file).toString())
+  const ret = yaml.load(fs.readFileSync(file).toString())
 
-  if(!ret) {
+  if (!ret) {
     return new Error('Unable to read file')
   }
 

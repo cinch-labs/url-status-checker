@@ -1,5 +1,5 @@
 import fetch from 'node-fetch'
-import {Link} from "./schema";
+import {Link, LinksFile} from "./schema";
 
 export type HttpMethod = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'OPTIONS' | 'HEAD'
 const allowedMethods = ['GET', 'POST', 'PUT', 'PATCH', 'OPTIONS', 'HEAD']
@@ -16,24 +16,34 @@ const makeRequest = async (method: HttpMethod, url: string, body: string) => {
   return fetch(url, params)
 }
 
-export const checkLink = async (link: Link) => {
-  const {method, url, statusCode, body} = link
+const trimSlashes = (url?: string) => {
+  if(url) {
+    return url.replace(/\/$/, "").replace(/^\//, "")
+  }
 
-  if(!allowedMethods.includes(method)) {
+  return url
+}
+
+export const checkLink = async (link: Link, baseUrl?: string) => {
+  const {method, statusCode, body} = link
+
+  const url = baseUrl !== undefined ? `${trimSlashes(baseUrl)}/${trimSlashes(link.url)}` : link.url
+
+  if (!allowedMethods.includes(method)) {
     throw new Error(`${method} is not allowed to be used`)
   }
 
-    const response = await makeRequest(method, url, body || '')
+  const response = await makeRequest(method, url, body || '')
 
-    return {
-      url,
-      statusCode,
-      method,
-      success: response.status === statusCode,
-      responseStatusCode: response.status
-    }
+  return {
+    url,
+    statusCode,
+    method,
+    success: response.status === statusCode,
+    responseStatusCode: response.status
+  }
 }
 
-export const checkAllLinks = async (links: Link[]) => {
-  return Promise.all(links.map(async (link) => checkLink(link)))
+export const checkAllLinks = async (linksFile: LinksFile) => {
+  return Promise.all(linksFile.links.map(async (link) => checkLink(link, linksFile.baseUrl)))
 }
