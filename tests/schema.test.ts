@@ -11,7 +11,7 @@ const readData = (name: string) => {
 test('validates a good file', () => {
   const data = readData("links.yml")
   console.log(data)
-
+  expect(isInputFileValid(data)).toBe(true)
 })
 
 test('fails to validate a bad file', () => {

@@ -9,5 +9,6 @@ export default {
   testEnvironment: "node",
   transform: {
     "^.+\\.tsx?$": "esbuild-jest"
-  }
+  },
+  silent: true
 };

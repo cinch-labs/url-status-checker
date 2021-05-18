@@ -1,14 +1,13 @@
 import {readFile} from "./file";
 import {isInputFileValid, LinksFile} from "./schema";
 import * as core from '@actions/core'
-import * as github from '@actions/github'
 import * as Result from './types'
 import {checkAllLinks} from "./link";
 
 async function run() {
   try {
     const file = core.getInput('file')
-    console.log(`Reading links file at: ${file}`)
+    core.info(`Reading links file at: ${file}`)
 
     if(!file) {
       const logMsg = "The 'file' input parameter was not provided"

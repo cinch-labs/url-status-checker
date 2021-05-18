@@ -1,10 +1,12 @@
 import Ajv, {JSONSchemaType} from 'ajv';
+import {HttpMethod} from "./link";
+import * as Http from "http";
 const ajv = new Ajv()
 
 export interface Link {
   url: string
   statusCode: number
-  method: 'GET' | 'POST' | 'PUT' | 'OPTIONS' | 'PATCH' | 'HEAD'
+  method: HttpMethod
   body?: string
 }
 
@@ -27,7 +29,7 @@ const schema: JSONSchemaType<LinksFile> = {
             type: "number"
           },
           method: {
-            type: "string"
+            type: "string",
           },
           body: {
             type: "string"

@@ -2,8 +2,9 @@ import fetch from 'node-fetch'
 import {Link} from "./schema";
 
 export type HttpMethod = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'OPTIONS' | 'HEAD'
+const allowedMethods = ['GET', 'POST', 'PUT', 'PATCH', 'OPTIONS', 'HEAD']
 
-export const makeRequest = async (method: HttpMethod, url: string, body: string) => {
+const makeRequest = async (method: HttpMethod, url: string, body: string) => {
   let params: Record<string, string> = {
     method: method,
   }
@@ -17,6 +18,10 @@ export const makeRequest = async (method: HttpMethod, url: string, body: string)
 
 export const checkLink = async (link: Link) => {
   const {method, url, statusCode, body} = link
+
+  if(!allowedMethods.includes(method)) {
+    throw new Error(`${method} is not allowed to be used`)
+  }
 
     const response = await makeRequest(method, url, body || '')
 
