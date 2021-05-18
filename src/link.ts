@@ -22,7 +22,10 @@ export const checkLink = async (link: Link) => {
 
     return {
       url,
-      success: response.status === statusCode
+      statusCode,
+      method,
+      success: response.status === statusCode,
+      responseStatusCode: response.status
     }
 }
 

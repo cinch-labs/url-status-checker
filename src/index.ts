@@ -34,13 +34,11 @@ async function run() {
 
     for(const result of results) {
       if(result.success) {
-        core.info(`PASS - ${result.url}`)
+        core.info(`PASS: ${result.method} ${result.url} - ${result.statusCode}`)
       } else {
-        core.info(`FAIL - ${result.url}`)
+        core.info(`FAIL: ${result.method} ${result.url} - Expected ${result.statusCode}, got: ${result.responseStatusCode}`)
       }
     }
-
-
   } catch(e) {
     core.setFailed(e.message)
   }

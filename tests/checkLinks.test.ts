@@ -12,6 +12,9 @@ const urls: Link[] = [
 test('checkAllLinks()', async () => {
   await expect(checkAllLinks(urls)).resolves.toStrictEqual([{
     url: 'https://example.com',
-    success: true
+    success: true,
+    method: 'GET',
+    responseStatusCode: 200,
+    statusCode: 200,
   }])
 })
