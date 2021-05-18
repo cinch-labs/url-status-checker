@@ -5,9 +5,6 @@ inputs:
     description: 'Your file that defines which links to check'
     required: true
     default: 'links.yml'
-outputs:
-  log:
-    description: 'A log of the tests'
 runs:
   using: 'node12'
   main: 'dist/index.js'
