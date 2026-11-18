@@ -12,7 +12,7 @@ jobs:
       - name: Configure node and npm
         uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
-          node-version: 14
+          node-version: 24
           registry-url: https://npm.pkg.github.com/
           scope: '@cinch-labs'
       - name: Cache node_modules
@@ -20,7 +20,7 @@ jobs:
         uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: '**/node_modules'
-          key: v1-${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+          key: v2-node24-${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
       - name: npm ci
         if: steps.cache-node-modules.outputs.cache-hit != 'true'
         run: npm ci
@@ -37,7 +37,7 @@ jobs:
       - name: Configure node and npm
         uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
-          node-version: 14
+          node-version: 24
           registry-url: https://npm.pkg.github.com/
           scope: '@cinch-labs'
       - name: Cache node_modules
@@ -45,14 +45,14 @@ jobs:
         uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: '**/node_modules'
-          key: v1-${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+          key: v2-node24-${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
       - name: npm ci
         if: steps.cache-node-modules.outputs.cache-hit != 'true'
         run: npm ci
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GHP_TOKEN }}
       - run: npm run build
-      - run: npm run package
       - uses: ./
         with:
           file: ./links.yml
+      - run: npm run package
