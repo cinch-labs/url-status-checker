@@ -52,7 +52,7 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GHP_TOKEN }}
       - run: npm run build
-      - run: npm run package
       - uses: ./
         with:
           file: ./links.yml
+      - run: npm run package
